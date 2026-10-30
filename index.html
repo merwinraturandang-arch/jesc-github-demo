@@ -73,6 +73,15 @@ h2{font-size:clamp(1.5rem,3.5vw,2rem);margin-bottom:8px}
 #places td[colspan]{text-align:center;color:var(--muted);padding:28px}
 #places a{color:var(--accent);font-weight:600;text-decoration:none}
 #places a:hover{text-decoration:underline}
+/* kotak ketik di simulasi chat */
+.ask{display:flex;gap:8px;padding:0 18px 14px}
+.ask input{flex:1;min-width:0;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:#0f151d;color:var(--text);font-family:inherit;font-size:.92rem}
+.ask input::placeholder{color:var(--muted)}
+.ask input:focus{outline:none;border-color:var(--accent)}
+.ask button{flex:none;padding:11px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:#052e16;font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s}
+.ask button:hover:not(:disabled){box-shadow:0 6px 18px rgba(34,197,94,.3)}
+.ask input:disabled,.ask button:disabled{opacity:.45;cursor:not-allowed}
+.sim-note{padding:0 18px 16px;color:var(--muted);font-size:.78rem;line-height:1.5}
 /* lencana tahap: kuning dan diam, bukan hijau berdenyut seperti "aktif" */
 .badge.proto{border-color:rgba(252,211,77,.45);color:#fde68a;background:rgba(252,211,77,.08);animation:none}
 /* BLUEPRINT */
@@ -352,6 +361,11 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
         <button onclick="play('katalog')">🏘️ Cek Katalog</button>
         <button onclick="play('angsuran')">🧮 Simulasi Angsuran</button>
       </div>
+      <div class="ask">
+        <input id="tanya" type="text" maxlength="200" autocomplete="off" placeholder="Atau ketik pertanyaanmu sendiri…">
+        <button type="button" onclick="kirim()">Kirim</button>
+      </div>
+      <p class="sim-note">Simulasi. Jawabannya sudah ditulis sebelumnya dan mengikuti aturan yang sama dengan panduan tim pemasaran — bukan AI yang menjawab langsung. Untuk jawaban sungguhan, pakai tombol WhatsApp di atas.</p>
     </div>
   </div>
 </section>
@@ -425,6 +439,156 @@ async function play(key){
   }
   btns.forEach(b=>b.disabled=false);
 }
+</script>
+
+<script>
+// Simulasi tanya-jawab. Jawabannya sudah ditulis sebelumnya dan mengikuti aturan
+// yang sama dengan panduan tim pemasaran — tidak ada AI yang menjawab di sini.
+// Urutannya penting: yang spesifik harus di atas yang umum, karena kata seperti
+// "kredit" dan "harga" muncul di banyak pertanyaan sekaligus.
+const bankJawaban = [
+  { k: ['bot', 'robot', 'manusia', 'ai ya'], a: [
+    "Iya kak, saya asisten digital tim pemasaran, standby buat bantu info awal 🙂",
+    "Kalau mau ngobrol langsung sama tim, bisa mampir ke kantor pemasaran ya kak."] },
+
+  { k: ['oper kredit', 'over kredit', 'lanjut kredit', 'take over'], a: [
+    "Untuk rumah lanjut kredit kami tidak menjual ya kak, yang kami tawarkan unit baru semua.",
+    "Kalau kakak terbuka dengan unit baru, di Koka Asri saat ini masih ada type 39, 48, sama 54. Kakak budgetnya di kisaran berapa kak?"] },
+
+  { k: ['free um', 'tanpa dp', 'tanpa uang muka', 'nggak ada dp', 'gak ada dp', 'tidak ada dp'], a: [
+    "Betul kak, UM-nya memang kami gratiskan, jadi tidak ada DP terpisah.",
+    "Tapi yang tetap ada: booking Rp 1.000.000 untuk menahan unit, lalu UTJ Rp 4.000.000 pas pilih blok. Di luar itu ada biaya akad bank sesuai estimasi, sama cadangan angsuran dari bank yang biasanya sekitar 2x angsuran.",
+    "Untuk hitungan pastinya tim kami di kantor bisa bantu rinciin sesuai kondisi kakak."] },
+
+  { k: ['booking', 'utj', 'tanda jadi', 'dp berapa', 'uang muka'], a: [
+    "Kakak lagi cari yang subsidi atau yang komersil kak? Bookingnya beda soalnya 🙂",
+    "Kalau komersil, bookingnya Rp 1.000.000 dulu untuk menahan unit. Nanti pas pilih blok ada UTJ Rp 4.000.000 — totalnya Rp 5.000.000, dan itu mengurangi biaya admin bank.",
+    "Kalau subsidi, Booking Waiting List-nya Rp 900.000."] },
+
+  { k: ['subsidi'], a: [
+    "Untuk unit subsidi di Koka Asri saat ini sudah sold out ya kak. Yang masih ada tinggal unit komersil.",
+    "Di JCHome Koka subsidinya juga sudah sold out. Kemungkinan nanti ada lagi, tapi belum ada kepastian kapan.",
+    "Kalau kakak memang lagi cari yang subsidi, bisa amankan tempat lewat Booking Waiting List Rp 900.000 — nanti dihubungi sesuai urutan antrean, dan kalau batal menunggu uangnya kembali 100%."] },
+
+  { k: ['type 36', 'tipe 36', '36/91'], a: [
+    "Untuk type 36 saat ini sudah sold ya kak, baik di JCHome Koka maupun Koka Asri.",
+    "Yang masih tersedia sekarang type 39, 48, sama 54 kak. Kakak budgetnya di kisaran berapa? Biar saya bantu arahkan."] },
+
+  { k: ['type 39', 'tipe 39', '39/108', '39/112'], a: [
+    "Type 39 ada di dua proyek kami kak, tapi statusnya beda 🙂",
+    "Di JCHome Koka yang tersedia type 39/112, harga Rp 300.000.000. Kalau di Koka Asri, type 39/108 harga Rp 285.000.000 dan stoknya terbatas.",
+    "Kakak maksudnya yang di proyek mana kak?"] },
+
+  { k: ['type 48', 'tipe 48', '48/120'], a: [
+    "Type 48/120 ada di Koka Asri kak, harga jualnya Rp 450.000.000 dengan Free UM Rp 45.000.000, free pajak pembeli dan free biaya notaris.",
+    "Stoknya terbatas ya kak. Kakak rencananya mau proses cash atau KPR?"] },
+
+  { k: ['type 54', 'tipe 54', '54/165'], a: [
+    "Type 54/165 di Koka Asri kak, harga Rp 580.000.000 dengan Free UM Rp 58.000.000, free pajak pembeli dan free biaya notaris.",
+    "Ini yang paling luas di antara yang tersedia sekarang. Mau saya kirim lokasinya kak?"] },
+
+  { k: ['bunga', 'suku bunga', 'persen'], a: [
+    "Untuk suku bunga saya belum bisa pastikan ya kak, karena itu tergantung bank dan profil pengajuan masing-masing.",
+    "Tim kami di kantor pemasaran bisa jelasin lengkap sekalian bantu hitungin. Kantor buka Senin–Jumat jam 9–5 sore, Sabtu jam 11–4 sore."] },
+
+  { k: ['btn', 'bri', 'bsi', 'mandiri', 'syariah'], a: [
+    "Tiap bank punya skema dan promo sendiri ya kak, jadi angkanya beda-beda. Simulasi yang kami punya di sini khusus promo Bank BNI.",
+    "Boleh tau kakak karyawan atau wiraswasta? Soalnya kalau wiraswasta, di BTN ada skema KPP yang memang khusus untuk yang punya usaha.",
+    "Detail sama syaratnya lebih enak dijelasin langsung sama tim kami di kantor pemasaran."] },
+
+  { k: ['nego', 'diskon', 'kurang', 'potongan'], a: [
+    "Untuk penyesuaian harga saya belum bisa putuskan dari sini ya kak, itu wewenang tim di kantor.",
+    "Tapi kakak bisa langsung ngobrol sama tim kami di kantor pemasaran Citraland, biasanya di sana bisa dibicarakan sekalian dengan skema pembayarannya."] },
+
+  { k: ['indent', 'sudah jadi', 'siap huni', 'ready stock', 'sudah dibangun'], a: [
+    "Untuk unit yang tersedia sekarang statusnya indent ya kak, jadi rumahnya dibangun setelah prosesnya jalan — bukan yang sudah berdiri siap huni.",
+    "Untuk lama pengerjaan sama perkiraan serah terimanya, tim kami di kantor yang bisa jelasin pasti. Kakak bisa mampir kapan kak?"] },
+
+  { k: ['cicilan', 'angsuran', 'kpr', 'kredit', 'nyicil'], a: [
+    "Untuk cicilan tergantung type sama tenornya ya kak.",
+    "Contohnya Koka Asri type 39/108, harga Rp 285.000.000. Kalau tenor 15 tahun: tahun 1 Rp 2.105.980, tahun 2–3 Rp 2.378.568, tahun 4–10 Rp 2.766.547, tahun 11–15 Rp 2.831.206.",
+    "Simulasi di atas untuk promo Bank BNI ya kak. Kalau lewat bank lain angkanya beda-beda, dan angka finalnya tetap tergantung approval bank sama profil pengajuan kakak."] },
+
+  { k: ['harga', 'pricelist', 'price list', 'berapaan', 'brp'], a: [
+    "Untuk pricelistnya tergantung type ya kak. Kakak sudah ada rencana mau proses type apa kak?",
+    "Di Koka Asri saat ini tersedia type 39/108 (Rp 285 juta), 48/120 (Rp 450 juta), sama 54/165 (Rp 580 juta). Kalau di JCHome Koka ada type 39/112 (Rp 300 juta)."] },
+
+  { k: ['lokasi', 'alamat', 'dimana', 'di mana', 'maps', 'peta'], a: [
+    "Ada dua alamat berbeda ya kak, jangan sampai tertukar 🙂",
+    "Lokasi perumahannya di Koka — Koka Asri di Jl. Raya Koka–Kamangta, JCHome Koka di Jl. Raya Manado–Koka, Tombulu, Minahasa.",
+    "Kalau kantor pemasaran, itu di Citraland, Jl. Citraland Utama II No. 10. Kakak mau cek lokasi dulu, atau langsung ke kantor kak?"] },
+
+  { k: ['kantor', 'jam buka', 'jam berapa', 'buka jam', 'hari apa'], a: [
+    "Kantor pemasaran kami di Jl. Citraland Utama II No. 10, Kompleks Ruko Citraland — bisa langsung datang tanpa janjian kak.",
+    "Buka Senin–Jumat jam 9–5 sore, Sabtu jam 11–4 sore. Minggu dan hari libur tutup.",
+    "Kira-kira kakak bisa ke sana hari apa kak?"] },
+
+  { k: ['foto', 'video', 'gambar', 'liat rumahnya', 'lihat rumahnya'], a: [
+    "Kakak bisa lihat foto sama videonya di TikTok kami ya kak: tiktok.com/@jcskoka",
+    "Di situ ada model unit sama suasana perumahannya. Kalau sudah ada yang menarik, lebih enak lagi lihat langsung ke lokasi kak — beda rasanya sama lihat di video."] },
+
+  { k: ['katalog', 'brosur', 'daftar unit'], a: [
+    "Ini katalog kami kak, ada daftar unit sama detailnya: wa.me/c/6282196678073",
+    "Kalau mau lihat model sama suasananya, di TikTok kami juga ada videonya: tiktok.com/@jcskoka"] },
+
+  { k: ['air', 'sumur', 'pdam'], a: [
+    "Untuk air, di sini pakai sumur bor induk perumahan kak, airnya lancar. Saat ini pengalirannya dijadwalkan pagi sama sore, dengan iuran air dan sampah Rp 100.000.",
+    "Ke depan rencananya mau dialirkan sepanjang hari, nanti iurannya mengikuti pemakaian pakai meteran — tapi untuk waktunya belum bisa saya pastikan ya kak."] },
+
+  { k: ['sertifikat', 'shm', 'shgb', 'legalitas', 'surat'], a: [
+    "Sertifikatnya saat ini SHGB ya kak, dan bisa ditingkatkan jadi SHM dengan tambahan biaya.",
+    "Untuk detail biayanya, tim kami di kantor pemasaran yang bisa jelasin pasti."] }
+];
+
+const jawabanDefault = [
+  "Untuk yang satu itu saya belum bisa pastikan dari sini ya kak 🙏",
+  "Info detail, konsultasi, dan booking lebih enak langsung di kantor pemasaran kami di Citraland — buka Senin–Jumat jam 9–5 sore, Sabtu jam 11–4 sore.",
+  "Atau kakak bisa chat tim kami langsung lewat tombol WhatsApp di atas ya kak."];
+
+const kotakTanya = document.getElementById('tanya');
+const tombolKirim = document.querySelector('.ask button');
+
+function cariJawaban(teks) {
+  const t = teks.toLowerCase();
+  for (const b of bankJawaban) {
+    if (b.k.some(k => t.includes(k))) return b.a;
+  }
+  return jawabanDefault;
+}
+
+function kunci(on) {
+  kotakTanya.disabled = tombolKirim.disabled = on;
+  btns.forEach(b => b.disabled = on);
+}
+
+async function kirim() {
+  const teks = kotakTanya.value.trim();
+  if (!teks) return;
+  kotakTanya.value = '';
+  kunci(true);
+  const hint = chat.querySelector('.hint');
+  if (hint) hint.remove();
+  add(teks, 'user');
+  for (const baris of cariJawaban(teks)) {
+    await wait(400);
+    const t = typing();
+    await wait(650 + baris.length * 8);
+    t.remove();
+    add(baris, 'bot');
+  }
+  kunci(false);
+  kotakTanya.focus();
+}
+
+kotakTanya.addEventListener('keydown', e => { if (e.key === 'Enter') kirim(); });
+
+// Tombol skenario mengosongkan chat, jadi kotak ketik ikut dikunci selama diputar.
+const playAsli = window.play;
+window.play = async function (k) {
+  kotakTanya.disabled = tombolKirim.disabled = true;
+  await playAsli(k);
+  kotakTanya.disabled = tombolKirim.disabled = false;
+};
 </script>
 
 <script>
