@@ -73,6 +73,8 @@ h2{font-size:clamp(1.5rem,3.5vw,2rem);margin-bottom:8px}
 #places td[colspan]{text-align:center;color:var(--muted);padding:28px}
 #places a{color:var(--accent);font-weight:600;text-decoration:none}
 #places a:hover{text-decoration:underline}
+/* lencana tahap: kuning dan diam, bukan hijau berdenyut seperti "aktif" */
+.badge.proto{border-color:rgba(252,211,77,.45);color:#fde68a;background:rgba(252,211,77,.08);animation:none}
 /* BLUEPRINT */
 .bp{display:grid;gap:18px;counter-reset:bp}
 .bp-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px 28px;position:relative}
@@ -80,10 +82,19 @@ h2{font-size:clamp(1.5rem,3.5vw,2rem);margin-bottom:8px}
 .bp-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
 .bp-num{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:.95rem;color:#052e16;background:var(--accent)}
 .bp-tag{padding:4px 11px;border:1px solid rgba(34,197,94,.4);border-radius:999px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#bbf7d0;background:rgba(34,197,94,.07)}
+.bp-state{margin-left:auto;padding:4px 11px;border-radius:999px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;color:#fcd34d;border:1px solid rgba(252,211,77,.42);background:rgba(252,211,77,.08)}
 .bp-card h3{font-size:1.18rem;margin:0}
 .bp-card p{color:#cbd5e1;font-size:.95rem}
 .bp-note{margin-top:16px;padding:13px 16px;border-left:2px solid var(--accent);border-radius:0 10px 10px 0;background:rgba(34,197,94,.06);font-size:.9rem;color:#cbd5e1}
 .bp-note b{color:#bbf7d0}
+/* posisi sekarang vs yang dituju */
+.bp-status{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:22px}
+.bp-status>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.bp-status h4{font-size:.98rem;margin-bottom:6px}
+.bp-status p{color:#cbd5e1;font-size:.9rem}
+.bp-status b{color:var(--text)}
+.bp-status .now{border-top:3px solid #38bdf8}
+.bp-status .next{border-top:3px solid #fcd34d}
 /* kartu peran agen */
 .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-top:18px}
 .role{background:#0f151d;border:1px solid var(--line);border-radius:12px;padding:14px 15px}
@@ -118,7 +129,8 @@ h2{font-size:clamp(1.5rem,3.5vw,2rem);margin-bottom:8px}
 @media(max-width:760px){
   .chain{flex-direction:column}
   .arrow{transform:rotate(90deg);padding:7px 0}
-  .mem{grid-template-columns:1fr}
+  .mem,.bp-status{grid-template-columns:1fr}
+  .bp-state{margin-left:0}
   .bp-card{padding:22px 20px 24px}
 }
 /* FOOTER */
@@ -134,10 +146,10 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
 <header class="hero">
   <div class="wrap">
     <div class="avatar">🏡</div>
-    <div class="badge">🟢 Status: Active &amp; Ready 24/7</div>
+    <div class="badge proto">🟡 Tahap: Prototipe — dijalankan manual</div>
     <h1>Jes<span>C</span></h1>
     <p class="project">Asisten Digital Perumahan JCHome Koka &amp; Koka Asri</p>
-    <p class="tagline">Asisten digital yang membalas calon pembeli rumah 24 jam — dari cek katalog, simulasi angsuran, sampai terhubung langsung ke tim marketing.</p>
+    <p class="tagline">Asisten digital untuk calon pembeli rumah — dari cek katalog, simulasi angsuran, sampai terhubung ke tim marketing.</p>
     <div class="btns">
       <a href="#blueprint" class="btn">📐 Lihat Blueprint</a>
       <a href="#simulasi" class="btn">Coba Simulasi</a>
@@ -163,8 +175,8 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
       <div class="box solution">
         <h3>✅ The Solution</h3>
         <ul>
-          <li>⚡ <span>JesC membalas setiap chat dalam hitungan detik, 24 jam sehari, 7 hari seminggu.</span></li>
-          <li>🤖 <span>Pertanyaan rutin soal katalog, harga, dan angsuran dijawab otomatis dan konsisten.</span></li>
+          <li>⚡ <span>Jawaban soal katalog dan angsuran punya satu acuan yang sama, jadi tidak ada angka yang berubah-ubah.</span></li>
+          <li>🤖 <span>Aturan menjawabnya sudah tertulis rapi — termasuk kapan harus bilang "saya cek dulu" ketimbang mengarang.</span></li>
           <li>📋 <span>Setiap calon pembeli didata lewat Google Form, lalu diteruskan ke tim marketing via WhatsApp.</span></li>
         </ul>
       </div>
@@ -189,7 +201,18 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
 <section id="blueprint" style="padding-top:0">
   <div class="wrap">
     <h2 class="center">Blueprint JesC</h2>
-    <p class="sub center">Lima poin yang menjelaskan isi dapur JesC: siapa saja agennya, bagaimana mereka diatur, dan apa yang mereka ingat.</p>
+    <p class="sub center">Rancangan arsitektur JesC — lima poin yang menjelaskan isi dapurnya: siapa saja agennya, bagaimana mereka diatur, dan apa yang mereka ingat.</p>
+
+    <div class="bp-status">
+      <div class="now">
+        <h4>📍 Posisi hari ini</h4>
+        <p>JesC <b>belum berjalan otomatis</b>. Pertanyaan calon pembeli masih dijawab manual lewat WhatsApp, dengan katalog unit dan hitungan angsuran sebagai acuan, lalu didata ke Google Form. Belum ada pembagian agen, belum ada ingatan antar-percakapan, dan belum ada balasan otomatis.</p>
+      </div>
+      <div class="next">
+        <h4>🎯 Yang dituju blueprint ini</h4>
+        <p>Lima poin di bawah adalah <b>rancangan arsitektur</b> yang jadi arah pengembangan JesC — tim agen dengan peran terpisah, dua pola orkestrasi, dan dua lapis memori. Semuanya ditandai <b>Rancangan</b>, supaya jelas mana yang sudah ada dan mana yang sedang dituju.</p>
+      </div>
+    </div>
 
     <div class="bp">
 
@@ -198,9 +221,10 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
         <div class="bp-top">
           <div class="bp-num">1</div>
           <span class="bp-tag">Tim Agen</span>
+          <span class="bp-state">Rancangan</span>
         </div>
         <h3>Satu Nama, Lima Peran</h3>
-        <p>JesC bukan satu bot serba bisa. Di belakangnya ada lima agen yang masing-masing pegang satu tugas, supaya tiap jawaban digarap oleh yang paling paham. Kalau satu agen keliru, yang lain tidak ikut rusak — dan menambah kemampuan baru berarti menambah satu agen, bukan membongkar semuanya.</p>
+        <p>Hari ini JesC masih satu bot yang menjawab semuanya sendiri. Rancangannya: pecah jadi lima agen yang masing-masing pegang satu tugas, supaya tiap jawaban digarap oleh yang paling paham. Kalau satu agen keliru, yang lain tidak ikut rusak — dan menambah kemampuan baru berarti menambah satu agen, bukan membongkar semuanya.</p>
         <div class="roles">
           <div class="role"><b>🎧 Agen Penyambut</b><span>Membaca pesan masuk, menangkap maksudnya, melempar ke agen yang tepat.</span></div>
           <div class="role"><b>🏘️ Agen Katalog</b><span>Mencari unit yang cocok: tipe, harga, lokasi, dan sisa ketersediaan.</span></div>
@@ -215,9 +239,10 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
         <div class="bp-top">
           <div class="bp-num">2</div>
           <span class="bp-tag">Pola Orkestrasi 1 dari 2</span>
+          <span class="bp-state">Rancangan</span>
         </div>
         <h3>Sequential Chain — untuk alur yang sudah pasti</h3>
-        <p>Kalau kebutuhan calon pembeli sudah jelas, pekerjaannya tinggal berurutan: hasil agen pertama jadi bahan agen berikutnya, sampai selesai. Tidak ada yang perlu mengatur lalu lintas, jalurnya satu arah — jadi cepat, murah, dan hasilnya selalu sama. Ini jalur utama JesC untuk alur baku "dari tanya sampai jadwal survei".</p>
+        <p>Kalau kebutuhan calon pembeli sudah jelas, pekerjaannya tinggal berurutan: hasil agen pertama jadi bahan agen berikutnya, sampai selesai. Tidak ada yang perlu mengatur lalu lintas, jalurnya satu arah — jadi cepat, murah, dan hasilnya selalu sama. Pola ini akan jadi jalur utama JesC untuk alur baku "dari tanya sampai jadwal survei".</p>
         <div class="chain">
           <div class="step first"><b>Pesan masuk</b><span>"Cari rumah ±300 jt"</span></div>
           <div class="arrow">→</div>
@@ -229,7 +254,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
           <div class="arrow">→</div>
           <div class="step"><b>Agen Serah-Terima</b><span>sales dapat ringkasan</span></div>
         </div>
-        <div class="bp-note"><b>Contoh nyata:</b> "Saya cari rumah ±300 juta di Koka, rencana KPR BNI." → satu lintasan, calon pembeli langsung dapat pilihan unit, angka cicilan, dan tawaran jadwal survei tanpa perlu ditanya balik.</div>
+        <div class="bp-note"><b>Contoh alurnya:</b> "Saya cari rumah ±300 juta di Koka, rencana KPR BNI." → satu lintasan, calon pembeli langsung dapat pilihan unit, angka cicilan, dan tawaran jadwal survei tanpa perlu ditanya balik.</div>
       </article>
 
       <!-- POIN 3 -->
@@ -237,6 +262,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
         <div class="bp-top">
           <div class="bp-num">3</div>
           <span class="bp-tag">Pola Orkestrasi 2 dari 2</span>
+          <span class="bp-state">Rancangan</span>
         </div>
         <h3>Supervisor — untuk pertanyaan yang campur aduk</h3>
         <p>Pertanyaan sungguhan jarang rapi. Satu chat bisa memuat tiga hal sekaligus, atau belok di tengah jalan. Di situ Agen Penyambut naik peran jadi <b>supervisor</b>: ia memecah pertanyaan, memanggil agen yang diperlukan — boleh lebih dari satu, boleh dipanggil ulang kalau jawabannya belum cukup — lalu menjahit semuanya jadi satu balasan WhatsApp yang utuh.</p>
@@ -251,7 +277,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
             <div>🤝 Serah-Terima</div>
           </div>
         </div>
-        <div class="bp-note"><b>Contoh nyata:</b> "Unit 285 juta itu sertifikatnya apa, kalau DP 20% cicilannya berapa, dan bisa survei Sabtu?" → supervisor memanggil Katalog, KPR, dan Serah-Terima, hasilnya satu pesan utuh.<br><br><b>Kenapa dipakai dua pola?</b> Chain cepat dan hemat untuk alur yang sudah ketahuan ujungnya; Supervisor lebih pintar untuk yang tak terduga. JesC menjalankan Chain sebagai jalur utama, dan menyerahkan ke Supervisor begitu pertanyaannya keluar jalur.</div>
+        <div class="bp-note"><b>Contoh alurnya:</b> "Unit 285 juta itu sertifikatnya apa, kalau DP 20% cicilannya berapa, dan bisa survei Sabtu?" → supervisor memanggil Katalog, KPR, dan Serah-Terima, hasilnya satu pesan utuh.<br><br><b>Kenapa dirancang dua pola?</b> Chain cepat dan hemat untuk alur yang sudah ketahuan ujungnya; Supervisor lebih pintar untuk yang tak terduga. Rencananya Chain jadi jalur utama, dan Supervisor mengambil alih begitu pertanyaannya keluar jalur.</div>
       </article>
 
       <!-- POIN 4 -->
@@ -259,9 +285,10 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
         <div class="bp-top">
           <div class="bp-num">4</div>
           <span class="bp-tag">Arsitektur Memori</span>
+          <span class="bp-state">Rancangan</span>
         </div>
         <h3>Dua Lapis Ingatan — jangka pendek vs jangka panjang</h3>
-        <p>Agen tanpa ingatan akan menanyakan hal yang sama berulang kali. Tapi tidak semua hal perlu diingat selamanya, dan tidak semua hal cukup diingat sebentar. Karena itu ingatan JesC dipisah jadi dua lapis dengan tugas berbeda.</p>
+        <p>Agen tanpa ingatan akan menanyakan hal yang sama berulang kali — dan itu persis keadaan JesC sekarang: tiap chat dimulai dari nol. Tapi tidak semua hal perlu diingat selamanya, dan tidak semua hal cukup diingat sebentar. Karena itu ingatan JesC akan dipisah jadi dua lapis dengan tugas berbeda.</p>
         <div class="mem">
           <div class="short">
             <h4>⚡ Short-Term Memory</h4>
@@ -291,9 +318,10 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
         <div class="bp-top">
           <div class="bp-num">5</div>
           <span class="bp-tag">Vector Database</span>
+          <span class="bp-state">Rancangan</span>
         </div>
         <h3>Mencari Berdasarkan Makna, Bukan Kata Persis</h3>
-        <p>Pengetahuan panjang JesC dipotong jadi bagian-bagian kecil, diubah jadi deretan angka (<i>embedding</i>), lalu disimpan di <b>vector database</b> — kebetulan Supabase yang sama yang mengisi tabel "Data Tempat" di bawah. Saat ada pertanyaan, pertanyaannya juga diubah jadi angka, lalu sistem mencari potongan yang angkanya paling berdekatan: itulah yang maknanya paling mirip.</p>
+        <p>Rencananya pengetahuan panjang JesC dipotong jadi bagian-bagian kecil, diubah jadi deretan angka (<i>embedding</i>), lalu disimpan di <b>vector database</b>. Saat ada pertanyaan, pertanyaannya juga diubah jadi angka, lalu sistem mencari potongan yang angkanya paling berdekatan: itulah yang maknanya paling mirip.</p>
         <div class="chain">
           <div class="step first"><b>Pertanyaan</b><span>"rumah murah dekat kota"</span></div>
           <div class="arrow">→</div>
@@ -305,7 +333,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
           <div class="arrow">→</div>
           <div class="step"><b>Agen menjawab</b><span>berdasar data, bukan karangan</span></div>
         </div>
-        <div class="bp-note"><b>Kenapa bukan pencarian kata biasa?</b> Kalimat "rumah murah dekat kota" tidak memuat kata "285 juta" maupun "Koka", jadi pencarian kata kunci akan pulang dengan tangan kosong. Pencarian makna tetap menemukan unit yang benar. Efek sampingnya yang paling penting: jawaban JesC selalu bersandar pada dokumen yang nyata ada, sehingga ia tidak mengarang harga atau syarat KPR.</div>
+        <div class="bp-note"><b>Kenapa bukan pencarian kata biasa?</b> Kalimat "rumah murah dekat kota" tidak memuat kata "285 juta" maupun "Koka", jadi pencarian kata kunci akan pulang dengan tangan kosong. Pencarian makna tetap menemukan unit yang benar. Efek sampingnya yang paling penting: jawaban JesC akan bersandar pada dokumen yang nyata ada, sehingga ia tidak mengarang harga atau syarat KPR.<br><br><b>Fondasinya sudah ada.</b> Supabase yang sekarang mengisi tabel "Data Tempat" di bawah sudah menyediakan ekstensi <i>pgvector</i> — tinggal dinyalakan. Jadi yang kurang tinggal isinya, bukan tempatnya.</div>
       </article>
 
     </div>
