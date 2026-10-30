@@ -63,6 +63,64 @@ h2{font-size:clamp(1.5rem,3.5vw,2rem);margin-bottom:8px}
 .scen button{flex:1;min-width:140px;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f151d;color:var(--text);font-weight:600;font-size:.9rem;cursor:pointer;transition:.2s}
 .scen button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
 .scen button:disabled{opacity:.45;cursor:not-allowed}
+/* PLACES TABLE (Supabase) */
+.table-wrap{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow-x:auto}
+#places{width:100%;border-collapse:collapse;font-size:.92rem;min-width:720px}
+#places th,#places td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
+#places th{background:#0f151d;color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+#places tbody tr:last-child td{border-bottom:none}
+#places tbody tr:hover{background:rgba(34,197,94,.05)}
+#places td[colspan]{text-align:center;color:var(--muted);padding:28px}
+#places a{color:var(--accent);font-weight:600;text-decoration:none}
+#places a:hover{text-decoration:underline}
+/* BLUEPRINT */
+.bp{display:grid;gap:18px;counter-reset:bp}
+.bp-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 28px 28px;position:relative}
+.bp-card::after{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:0 3px 3px 0;background:var(--accent);opacity:.6}
+.bp-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.bp-num{width:34px;height:34px;flex:none;border-radius:10px;display:grid;place-items:center;font-weight:700;font-size:.95rem;color:#052e16;background:var(--accent)}
+.bp-tag{padding:4px 11px;border:1px solid rgba(34,197,94,.4);border-radius:999px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#bbf7d0;background:rgba(34,197,94,.07)}
+.bp-card h3{font-size:1.18rem;margin:0}
+.bp-card p{color:#cbd5e1;font-size:.95rem}
+.bp-note{margin-top:16px;padding:13px 16px;border-left:2px solid var(--accent);border-radius:0 10px 10px 0;background:rgba(34,197,94,.06);font-size:.9rem;color:#cbd5e1}
+.bp-note b{color:#bbf7d0}
+/* kartu peran agen */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-top:18px}
+.role{background:#0f151d;border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+.role b{display:block;font-size:.92rem;margin-bottom:3px}
+.role span{color:var(--muted);font-size:.84rem;line-height:1.5}
+/* rantai berurutan */
+.chain{display:flex;align-items:stretch;flex-wrap:nowrap;margin-top:18px}
+.step{flex:1 1 0;min-width:0;background:#0f151d;border:1px solid var(--line);border-radius:12px;padding:13px 10px;text-align:center;font-size:.84rem;line-height:1.45}
+.step b{display:block;color:var(--text)}
+.step span{color:var(--muted);font-size:.78rem}
+.step.first{border-color:rgba(34,197,94,.45)}
+.arrow{flex:none;display:grid;place-items:center;color:var(--accent);font-weight:700;padding:0 7px}
+/* diagram supervisor */
+.sup{margin-top:18px;text-align:center}
+.sup-boss{display:inline-block;padding:12px 22px;border:1px solid rgba(34,197,94,.55);border-radius:12px;background:rgba(34,197,94,.09);font-weight:600;font-size:.92rem}
+.sup-boss span{display:block;color:var(--muted);font-weight:400;font-size:.78rem}
+.sup-stem{width:2px;height:20px;background:var(--line);margin:0 auto}
+.sup-bar{height:2px;background:var(--line);margin:0 auto}
+.sup-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:0}
+.sup-row>div{position:relative;margin-top:20px;background:#0f151d;border:1px solid var(--line);border-radius:10px;padding:12px 10px;font-size:.84rem}
+.sup-row>div::before{content:"";position:absolute;left:50%;top:-20px;width:2px;height:20px;background:var(--line)}
+/* dua lapis memori */
+.mem{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.mem>div{background:#0f151d;border:1px solid var(--line);border-radius:12px;padding:18px}
+.mem h4{font-size:1rem;margin-bottom:2px}
+.mem>div>small{color:var(--muted);font-size:.8rem}
+.mem ul{list-style:none;margin-top:12px;display:grid;gap:7px;font-size:.87rem;color:#cbd5e1}
+.mem li{display:flex;gap:8px}
+.mem li::before{content:"›";color:var(--accent);font-weight:700;flex:none}
+.mem .short{border-top:3px solid #38bdf8}
+.mem .long{border-top:3px solid var(--accent)}
+@media(max-width:760px){
+  .chain{flex-direction:column}
+  .arrow{transform:rotate(90deg);padding:7px 0}
+  .mem{grid-template-columns:1fr}
+  .bp-card{padding:22px 20px 24px}
+}
 /* FOOTER */
 footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);background:radial-gradient(circle at 50% 100%,rgba(34,197,94,.10),transparent 60%)}
 .cta{font-size:1.1rem;padding:16px 32px;animation:glow 2.4s infinite}
@@ -81,6 +139,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
     <p class="project">Asisten Digital Perumahan JCHome Koka &amp; Koka Asri</p>
     <p class="tagline">Asisten digital yang membalas calon pembeli rumah 24 jam — dari cek katalog, simulasi angsuran, sampai terhubung langsung ke tim marketing.</p>
     <div class="btns">
+      <a href="#blueprint" class="btn">📐 Lihat Blueprint</a>
       <a href="#simulasi" class="btn">Coba Simulasi</a>
       <a href="https://wa.me/6282196678073?text=Halo%20JesC%2C%20saya%20tertarik%20dengan%20rumah%20di%20Koka%20Asri%20%2F%20JCHome%20Koka" class="btn btn-wa" target="_blank" rel="noopener">💬 Chat via WhatsApp</a>
     </div>
@@ -126,7 +185,134 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 4. INTERACTIVE SIMULATION -->
+<!-- 4. BLUEPRINT AGEN -->
+<section id="blueprint" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="center">Blueprint JesC</h2>
+    <p class="sub center">Lima poin yang menjelaskan isi dapur JesC: siapa saja agennya, bagaimana mereka diatur, dan apa yang mereka ingat.</p>
+
+    <div class="bp">
+
+      <!-- POIN 1 -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">1</div>
+          <span class="bp-tag">Tim Agen</span>
+        </div>
+        <h3>Satu Nama, Lima Peran</h3>
+        <p>JesC bukan satu bot serba bisa. Di belakangnya ada lima agen yang masing-masing pegang satu tugas, supaya tiap jawaban digarap oleh yang paling paham. Kalau satu agen keliru, yang lain tidak ikut rusak — dan menambah kemampuan baru berarti menambah satu agen, bukan membongkar semuanya.</p>
+        <div class="roles">
+          <div class="role"><b>🎧 Agen Penyambut</b><span>Membaca pesan masuk, menangkap maksudnya, melempar ke agen yang tepat.</span></div>
+          <div class="role"><b>🏘️ Agen Katalog</b><span>Mencari unit yang cocok: tipe, harga, lokasi, dan sisa ketersediaan.</span></div>
+          <div class="role"><b>🧮 Agen KPR</b><span>Menghitung estimasi DP, tenor, dan cicilan untuk tiap bank partner.</span></div>
+          <div class="role"><b>📋 Agen Prospek</b><span>Mencatat nama, nomor, dan kebutuhan calon pembeli ke data tim.</span></div>
+          <div class="role"><b>🤝 Agen Serah-Terima</b><span>Merangkum obrolan, meneruskan ke sales, menawarkan jadwal survei.</span></div>
+        </div>
+      </article>
+
+      <!-- POIN 2 -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">2</div>
+          <span class="bp-tag">Pola Orkestrasi 1 dari 2</span>
+        </div>
+        <h3>Sequential Chain — untuk alur yang sudah pasti</h3>
+        <p>Kalau kebutuhan calon pembeli sudah jelas, pekerjaannya tinggal berurutan: hasil agen pertama jadi bahan agen berikutnya, sampai selesai. Tidak ada yang perlu mengatur lalu lintas, jalurnya satu arah — jadi cepat, murah, dan hasilnya selalu sama. Ini jalur utama JesC untuk alur baku "dari tanya sampai jadwal survei".</p>
+        <div class="chain">
+          <div class="step first"><b>Pesan masuk</b><span>"Cari rumah ±300 jt"</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Agen Katalog</b><span>3 unit yang cocok</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Agen KPR</b><span>cicilan tiap unit</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Agen Prospek</b><span>data tersimpan</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Agen Serah-Terima</b><span>sales dapat ringkasan</span></div>
+        </div>
+        <div class="bp-note"><b>Contoh nyata:</b> "Saya cari rumah ±300 juta di Koka, rencana KPR BNI." → satu lintasan, calon pembeli langsung dapat pilihan unit, angka cicilan, dan tawaran jadwal survei tanpa perlu ditanya balik.</div>
+      </article>
+
+      <!-- POIN 3 -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">3</div>
+          <span class="bp-tag">Pola Orkestrasi 2 dari 2</span>
+        </div>
+        <h3>Supervisor — untuk pertanyaan yang campur aduk</h3>
+        <p>Pertanyaan sungguhan jarang rapi. Satu chat bisa memuat tiga hal sekaligus, atau belok di tengah jalan. Di situ Agen Penyambut naik peran jadi <b>supervisor</b>: ia memecah pertanyaan, memanggil agen yang diperlukan — boleh lebih dari satu, boleh dipanggil ulang kalau jawabannya belum cukup — lalu menjahit semuanya jadi satu balasan WhatsApp yang utuh.</p>
+        <div class="sup">
+          <div class="sup-boss">🎧 Supervisor <span>Agen Penyambut — memilih, memanggil, menggabungkan</span></div>
+          <div class="sup-stem"></div>
+          <div class="sup-bar" style="max-width:82%"></div>
+          <div class="sup-row">
+            <div>🏘️ Katalog</div>
+            <div>🧮 KPR</div>
+            <div>📋 Prospek</div>
+            <div>🤝 Serah-Terima</div>
+          </div>
+        </div>
+        <div class="bp-note"><b>Contoh nyata:</b> "Unit 285 juta itu sertifikatnya apa, kalau DP 20% cicilannya berapa, dan bisa survei Sabtu?" → supervisor memanggil Katalog, KPR, dan Serah-Terima, hasilnya satu pesan utuh.<br><br><b>Kenapa dipakai dua pola?</b> Chain cepat dan hemat untuk alur yang sudah ketahuan ujungnya; Supervisor lebih pintar untuk yang tak terduga. JesC menjalankan Chain sebagai jalur utama, dan menyerahkan ke Supervisor begitu pertanyaannya keluar jalur.</div>
+      </article>
+
+      <!-- POIN 4 -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">4</div>
+          <span class="bp-tag">Arsitektur Memori</span>
+        </div>
+        <h3>Dua Lapis Ingatan — jangka pendek vs jangka panjang</h3>
+        <p>Agen tanpa ingatan akan menanyakan hal yang sama berulang kali. Tapi tidak semua hal perlu diingat selamanya, dan tidak semua hal cukup diingat sebentar. Karena itu ingatan JesC dipisah jadi dua lapis dengan tugas berbeda.</p>
+        <div class="mem">
+          <div class="short">
+            <h4>⚡ Short-Term Memory</h4>
+            <small>Isi obrolan yang sedang berjalan</small>
+            <ul>
+              <li>Nama, budget, tipe unit, dan bank yang sudah dibahas di chat ini.</li>
+              <li>Membuat "yang kedua tadi cicilannya berapa?" bisa dijawab tanpa minta ulang data.</li>
+              <li>Cepat dan murah, tapi ruangnya terbatas.</li>
+              <li>Sengaja dilupakan setelah sesi selesai, supaya tidak menumpuk dan tidak melambat.</li>
+            </ul>
+          </div>
+          <div class="long">
+            <h4>🗄️ Long-Term Memory</h4>
+            <small>Pengetahuan yang menetap di database</small>
+            <ul>
+              <li>Katalog unit, syarat dokumen KPR tiap bank, FAQ, dan aturan promo.</li>
+              <li>Riwayat calon pembeli lama — kalau dia chat lagi enam bulan kemudian, JesC masih kenal.</li>
+              <li>Tidak ikut hilang saat chat ditutup atau sistem di-restart.</li>
+              <li>Disimpan di vector database, dicari berdasarkan makna — lihat poin 5.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- POIN 5 -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">5</div>
+          <span class="bp-tag">Vector Database</span>
+        </div>
+        <h3>Mencari Berdasarkan Makna, Bukan Kata Persis</h3>
+        <p>Pengetahuan panjang JesC dipotong jadi bagian-bagian kecil, diubah jadi deretan angka (<i>embedding</i>), lalu disimpan di <b>vector database</b> — kebetulan Supabase yang sama yang mengisi tabel "Data Tempat" di bawah. Saat ada pertanyaan, pertanyaannya juga diubah jadi angka, lalu sistem mencari potongan yang angkanya paling berdekatan: itulah yang maknanya paling mirip.</p>
+        <div class="chain">
+          <div class="step first"><b>Pertanyaan</b><span>"rumah murah dekat kota"</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Diubah jadi angka</b><span>embedding</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Cari yang terdekat</b><span>vector search</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>3 potongan paling relevan</b><span>katalog + syarat KPR</span></div>
+          <div class="arrow">→</div>
+          <div class="step"><b>Agen menjawab</b><span>berdasar data, bukan karangan</span></div>
+        </div>
+        <div class="bp-note"><b>Kenapa bukan pencarian kata biasa?</b> Kalimat "rumah murah dekat kota" tidak memuat kata "285 juta" maupun "Koka", jadi pencarian kata kunci akan pulang dengan tangan kosong. Pencarian makna tetap menemukan unit yang benar. Efek sampingnya yang paling penting: jawaban JesC selalu bersandar pada dokumen yang nyata ada, sehingga ia tidak mengarang harga atau syarat KPR.</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 5. INTERACTIVE SIMULATION -->
 <section id="simulasi" style="padding-top:0">
   <div class="wrap">
     <h2 class="center">Coba Ngobrol dengan JesC</h2>
@@ -142,7 +328,23 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 5. FOOTER & CTA -->
+<!-- 6. DATA PLACES (SUPABASE) -->
+<section id="data-places" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="center">Data Tempat</h2>
+    <p class="sub center">Data langsung dari database Supabase, diurutkan dari jumlah review terbanyak.</p>
+    <div class="table-wrap">
+      <table id="places">
+        <thead>
+          <tr><th>Nama</th><th>Kategori</th><th>Rating</th><th>Review</th><th>Kota</th><th>Telepon</th><th>Maps</th></tr>
+        </thead>
+        <tbody><tr><td colspan="7">Memuat data...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FOOTER & CTA -->
 <footer>
   <div class="wrap">
     <h2>Siap Punya Rumah di Koka?</h2>
@@ -195,6 +397,49 @@ async function play(key){
   }
   btns.forEach(b=>b.disabled=false);
 }
+</script>
+
+<script>
+  const SUPABASE_URL = 'https://cnjbjiosvuamwxlvaeer.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_EsydeVlFZoNwPeNF24_vnA_pyChB5AX'; // publishable key, BUKAN secret key
+
+  async function loadPlaces() {
+    const tbody = document.querySelector('#places tbody');
+    try {
+      const res = await fetch(
+        SUPABASE_URL + '/rest/v1/places?select=*&order=reviews_count.desc.nullslast&limit=100',
+        { headers: { apikey: SUPABASE_KEY } }
+      );
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const rows = await res.json();
+
+      tbody.replaceChildren();
+      for (const p of rows) {
+        const tr = document.createElement('tr');
+        for (const v of [p.title, p.category_name, p.total_score, p.reviews_count, p.city, p.phone]) {
+          const td = document.createElement('td');
+          td.textContent = v ?? '-';
+          tr.appendChild(td);
+        }
+        const td = document.createElement('td');
+        if (p.url && p.url.startsWith('https://')) {
+          const a = document.createElement('a');
+          a.href = p.url;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = 'Buka';
+          td.appendChild(a);
+        }
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+      }
+      if (!rows.length) tbody.innerHTML = '<tr><td colspan="7">Belum ada data.</td></tr>';
+    } catch (e) {
+      tbody.innerHTML = '<tr><td colspan="7">Gagal memuat data.</td></tr>';
+      console.error(e);
+    }
+  }
+  loadPlaces();
 </script>
 </body>
 </html>
