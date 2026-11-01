@@ -142,6 +142,108 @@ h2{font-size:clamp(1.5rem,3.5vw,2rem);margin-bottom:8px}
   .bp-state{margin-left:0}
   .bp-card{padding:22px 20px 24px}
 }
+/* DUA BLUEPRINT DALAM TAB */
+.bp-lead{max-width:780px;margin:0 auto 24px;text-align:center;color:#cbd5e1;font-size:.97rem}
+.bp-lead b{color:#bbf7d0}
+/* HERO WAR ROOM — pakai kerangka .hero yang sudah ada, cuma warnanya digeser
+   ke hijau-biru supaya beda suasana dengan bagian JesC di bawahnya. */
+.hero-wr{min-height:auto;padding:84px 0 76px;background:radial-gradient(circle at 50% -10%,rgba(34,197,94,.16),transparent 58%),radial-gradient(circle at 50% 120%,rgba(14,116,144,.14),transparent 55%)}
+.avatar.wr{background:linear-gradient(135deg,#14532d,#155e75);box-shadow:0 0 0 6px rgba(34,197,94,.1)}
+.badge.wr-badge{animation:none;letter-spacing:.04em;font-size:.78rem;text-transform:uppercase}
+.hero-wr .tagline{max-width:700px}
+.agen-strip{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:720px;margin:0 auto 30px}
+.agen-strip span{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(18,25,34,.75);color:var(--muted);font-size:.83rem}
+.agen-strip b{color:var(--text);font-weight:600}
+.btn-utama{border-color:var(--accent);background:rgba(34,197,94,.12);color:#bbf7d0}
+.btn-utama:hover{background:rgba(34,197,94,.2)}
+/* PEMBUKA BAGIAN JesC — isinya hero lama, sekarang jadi pintu masuk sendiri */
+.jesc-buka{border-top:1px solid var(--line);background:radial-gradient(circle at 50% 0%,rgba(34,197,94,.1),transparent 55%)}
+.eyebrow{margin-bottom:18px;color:var(--muted);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+.jesc-nama{font-size:clamp(2.1rem,6vw,3rem);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.jesc-nama span{color:var(--accent)}
+/* WAR ROOM — enam peran: dipatok 3 kolom supaya jadi 3+3, bukan 5+1 */
+.roles.wr{grid-template-columns:repeat(3,1fr)}
+/* WAR ROOM — daftar masalah */
+.wr-list{list-style:none;display:grid;gap:8px;margin-top:14px;font-size:.92rem;color:#cbd5e1}
+.wr-list li{display:flex;gap:9px}
+.wr-list li::before{content:"\00d7";color:var(--red);font-weight:700;flex:none}
+/* WAR ROOM — diagram alur hybrid */
+.flow{margin-top:18px}
+.flow-node{background:#0f151d;border:1px solid var(--line);border-radius:12px;padding:13px 16px;text-align:center;font-weight:600;font-size:.9rem}
+.flow-node small{display:block;color:var(--muted);font-weight:400;font-size:.8rem;margin-top:3px;line-height:1.5}
+.flow-node.start{border-color:rgba(56,189,248,.45)}
+.flow-node.boss{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.09)}
+.flow-node.rev{border-color:rgba(252,211,77,.5);background:rgba(252,211,77,.07)}
+.flow-node.final{border-color:var(--accent);background:rgba(34,197,94,.13)}
+.flow-stem{position:relative;width:2px;height:24px;background:var(--line);margin:0 auto}
+.flow-stem::after{content:"\25bc";position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);color:var(--accent);font-size:.58rem;line-height:1}
+.lane{position:relative;border:1px dashed var(--line);border-radius:14px;padding:28px 16px 16px}
+.lane-tag{position:absolute;top:-11px;left:16px;padding:2px 11px;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;background:var(--bg)}
+.lane.sup{border-color:rgba(34,197,94,.45)}
+.lane.sup .lane-tag{color:#bbf7d0;border:1px solid rgba(34,197,94,.5)}
+.lane.seq{border-color:rgba(56,189,248,.45)}
+.lane.seq .lane-tag{color:#bae6fd;border:1px solid rgba(56,189,248,.5)}
+.lane.rev{border-color:rgba(252,211,77,.45)}
+.lane.rev .lane-tag{color:#fde68a;border:1px solid rgba(252,211,77,.5)}
+.lane .chain{margin-top:0}
+.lane-note{margin-top:12px;text-align:center;color:var(--muted);font-size:.82rem}
+.flow-back{margin-top:12px;padding:10px 14px;border:1px dashed rgba(252,211,77,.5);border-radius:10px;text-align:center;color:#fde68a;font-size:.85rem}
+/* WAR ROOM — tabel routing */
+.rt-wrap{margin-top:18px;background:#0f151d;border:1px solid var(--line);border-radius:14px;overflow-x:auto}
+.rt{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+.rt th,.rt td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line)}
+.rt th{background:#121922;color:var(--muted);font-weight:600;font-size:.74rem;text-transform:uppercase;letter-spacing:.05em}
+.rt td{color:#cbd5e1}
+.rt tbody tr:last-child td{border-bottom:none}
+.rt .route{white-space:nowrap;font-weight:600}
+.rt .route b{color:var(--accent)}
+/* WAR ROOM — label anti-halusinasi */
+.lbls{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:12px;margin-top:16px}
+.lbl{background:#0f151d;border:1px solid var(--line);border-radius:12px;padding:15px}
+.lbl code{display:inline-block;margin-bottom:7px;padding:3px 10px;border-radius:7px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem;font-weight:700}
+.lbl p{color:var(--muted);font-size:.85rem}
+.lbl.fakta code{color:#bbf7d0;background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.42)}
+.lbl.asumsi code{color:#bae6fd;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.42)}
+.lbl.cek code{color:#fde68a;background:rgba(252,211,77,.12);border:1px solid rgba(252,211,77,.45)}
+/* WAR ROOM — tiga kartu memori */
+.mem3{grid-template-columns:repeat(3,1fr)}
+.mem .nope{border:1px dashed rgba(248,113,113,.55);border-top:3px solid var(--red);background:rgba(248,113,113,.05)}
+.mem .nope h4{color:#fca5a5}
+.mem .nope li::before{content:"\00d7";color:var(--red)}
+.nope-chip{display:inline-block;margin-top:14px;padding:3px 11px;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fca5a5;border:1px solid rgba(248,113,113,.5);background:rgba(248,113,113,.1)}
+/* WAR ROOM — blok lipat master prompt */
+.acc{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.acc>summary{display:flex;align-items:center;gap:10px;padding:18px 22px;font-weight:600;font-size:1rem;cursor:pointer;list-style:none}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary::after{content:"\25b8";margin-left:auto;color:var(--accent);transition:.2s}
+.acc[open]>summary::after{transform:rotate(90deg)}
+.acc>summary:hover{color:var(--accent)}
+.acc-body{padding:0 22px 22px;border-top:1px solid var(--line)}
+.acc-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:16px 0}
+.acc-bar p{flex:1;min-width:200px;color:var(--muted);font-size:.84rem}
+.copy{flex:none;padding:10px 18px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:#052e16;font-family:inherit;font-weight:600;font-size:.88rem;cursor:pointer;transition:.2s}
+.copy:hover{box-shadow:0 6px 18px rgba(34,197,94,.3)}
+.copy.done{background:transparent;color:#bbf7d0}
+.mp{max-height:420px;margin:0;padding:18px;overflow:auto;background:#0b1017;border:1px solid var(--line);border-radius:12px;color:#cbd5e1;font-family:ui-monospace,Consolas,monospace;font-size:.8rem;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+@media(max-width:760px){
+  .mem3,.roles.wr{grid-template-columns:1fr}
+  .hero-wr{padding:64px 0 56px}
+  .agen-strip span{font-size:.78rem;padding:7px 12px}
+  .lane{padding:26px 12px 14px}
+  .acc>summary{padding:16px 18px}
+  .acc-body{padding:0 18px 18px}
+}
+/* Di layar HP tabel routing dipecah jadi blok bertumpuk. Kalau dibiarkan
+   sebagai tabel, min-width-nya memaksa geser ke samping — dan rute agen
+   adalah hal yang paling sering dilihat juri. */
+@media(max-width:560px){
+  .rt{min-width:0}
+  .rt thead{display:none}
+  .rt tr{display:block;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .rt tbody tr:last-child{border-bottom:none}
+  .rt td{display:block;padding:0;border:none}
+  .rt .route{margin-top:6px;white-space:normal;color:var(--accent)}
+}
 /* FOOTER */
 footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);background:radial-gradient(circle at 50% 100%,rgba(34,197,94,.10),transparent 60%)}
 .cta{font-size:1.1rem;padding:16px 32px;animation:glow 2.4s infinite}
@@ -151,23 +253,370 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
 </head>
 <body>
 
-<!-- 1. HERO -->
-<header class="hero">
+<!-- 1. HERO — War Room, karena itu yang dinilai Week 5. Identitas JesC tidak
+     dibuang: ia jadi pembuka bagiannya sendiri di bawah, lengkap dengan
+     avatar, lencana prototipe, dan tombol WhatsApp-nya. -->
+<header class="hero hero-wr">
   <div class="wrap">
-    <div class="avatar">🏡</div>
-    <div class="badge proto">🟡 Tahap: Prototipe — dijalankan manual</div>
-    <h1>Jes<span>C</span></h1>
-    <p class="project">Asisten Digital Perumahan JCHome Koka &amp; Koka Asri</p>
-    <p class="tagline">Asisten digital untuk calon pembeli rumah — dari cek katalog, simulasi angsuran, sampai terhubung ke tim marketing.</p>
+    <div class="avatar wr">🎯</div>
+    <div class="badge wr-badge">Week 5 &middot; Agent Orchestration &mdash; AI Builder Bootcamp</div>
+    <h1>JCS Growth <span>War Room</span></h1>
+    <p class="project">Tim AI strategi marketing &amp; penjualan untuk developer perumahan</p>
+    <p class="tagline">Satu Lead Orchestrator memimpin lima agen spesialis: membedah akar masalah, menyusun strategi dan materi promosi, menghitung anggaran &mdash; lalu dikritik habis oleh agen reviewer sebelum hasilnya sampai ke meja CMO.</p>
+    <div class="agen-strip">
+      <span>🎯 <b>Orchestrator</b></span>
+      <span>🔍 <b>Analyst</b></span>
+      <span>📈 <b>Strategist</b></span>
+      <span>✍️ <b>Creative</b></span>
+      <span>📊 <b>Finance</b></span>
+      <span>🛡️ <b>Reviewer</b></span>
+    </div>
     <div class="btns">
-      <a href="#blueprint" class="btn">📐 Lihat Blueprint</a>
-      <a href="#simulasi" class="btn">Coba Simulasi</a>
+      <a href="#blueprint" class="btn btn-utama">📐 Lihat Blueprint</a>
+      <a href="#jesc" class="btn">🏡 Buka JesC</a>
       <a href="https://wa.me/6282196678073?text=Halo%20JesC%2C%20saya%20tertarik%20dengan%20rumah%20di%20Koka%20Asri%20%2F%20JCHome%20Koka" class="btn btn-wa" target="_blank" rel="noopener">💬 Chat via WhatsApp</a>
     </div>
   </div>
 </header>
 
-<!-- 2. PROBLEM & SOLUTION -->
+<!-- 2. BLUEPRINT WAR ROOM — challenge wajib Week 5 -->
+<section id="blueprint" style="padding-top:0">
+  <div class="wrap">
+    <p class="bp-lead"><b>JesC</b> adalah garda depan yang melayani calon pembeli di WhatsApp; <b>JCS Growth War Room</b> adalah tim strategi di balik layar yang memutuskan iklan, materi promosi, dan anggaran yang membuat chat itu masuk ke JesC.</p>
+    <h2 class="center">The Blueprint: JCS Growth War Room</h2>
+    <p class="sub center">Lima poin blueprint tim multi-agent &mdash; tugas Week 5 AI Builder Bootcamp, Agent Orchestration.</p>
+
+    <div class="bp">
+
+      <!-- 01 NAMA SISTEM -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">1</div>
+          <span class="bp-tag">Nama Sistem</span>
+        </div>
+        <h3>JCS Growth War Room</h3>
+        <p>Tim AI strategi marketing &amp; penjualan untuk developer perumahan. Satu <b>Lead Orchestrator</b> memimpin <b>lima agen spesialis</b>. Yang mereka kerjakan bukan melayani calon pembeli &mdash; itu tugas JesC &mdash; tapi membantu memutuskan langkah pemasarannya.</p>
+      </article>
+
+      <!-- 02 MASALAH -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">2</div>
+          <span class="bp-tag">Masalah yang Ditangani</span>
+        </div>
+        <h3>Satu Orang Merangkap Banyak Peran</h3>
+        <p>Seorang CMO developer perumahan &mdash; rumah subsidi FLPP dan komersil, di Sulawesi Utara &mdash; harus merangkap banyak peran sekaligus: menganalisis iklan, membuat materi promosi, mengatur alur leads sampai KPR, menyusun anggaran, dan melapor ke atasan. Semua itu dikerjakan dengan tim kecil.</p>
+        <p style="margin-top:12px">Satu AI &ldquo;palugada&rdquo; yang mengerjakan semuanya punya tiga masalah:</p>
+        <ul class="wr-list">
+          <li>Jawabannya generik.</li>
+          <li>Angkanya tanpa dasar.</li>
+          <li>Konteks bisnisnya hilang setiap sesi baru dibuka.</li>
+        </ul>
+      </article>
+
+      <!-- 03 TIM ATAU SENDIRI -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">3</div>
+          <span class="bp-tag">Berjalan Sendiri atau Tim?</span>
+        </div>
+        <h3>Tim &mdash; tapi tidak semuanya dipanggil sekaligus</h3>
+        <p>Satu Lead Orchestrator dan lima agen spesialis. Agen <b>tidak</b> dipanggil semua setiap saat; Orchestrator memilih agen sesuai jenis masalah lewat tabel routing di poin 4. Itu yang membuat jawabannya tidak melebar, dan tidak boros untuk pertanyaan yang sebenarnya sederhana.</p>
+      </article>
+
+      <!-- 04 ANGGOTA & POLA KERJA -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">4</div>
+          <span class="bp-tag">Anggota &amp; Pola Kerja</span>
+        </div>
+        <h3>Enam Peran, Pola Hybrid</h3>
+        <p>Satu supervisor yang mengatur lalu lintas, empat agen yang bekerja estafet, dan satu agen yang tugasnya khusus mencari kelemahan sebelum hasilnya sampai ke saya.</p>
+        <div class="roles wr">
+          <div class="role"><b>🎯 Lead Orchestrator</b><span><i>Supervisor</i> &mdash; klasifikasi masalah, pilih agen, atur urutan, jaga memori.</span></div>
+          <div class="role"><b>🔍 Agen 1 &mdash; Analyst</b><span><i>Market &amp; Root Cause</i> &mdash; pisahkan fakta dari asumsi, cari akar masalah, daftar data yang kurang.</span></div>
+          <div class="role"><b>📈 Agen 2 &mdash; Strategist</b><span><i>Growth &amp; Funnel</i> &mdash; Meta Ads, sosmed, alur leads &rarr; kunjungan &rarr; booking &rarr; KPR.</span></div>
+          <div class="role"><b>✍️ Agen 3 &mdash; Creative</b><span><i>Copy Specialist</i> &mdash; hook iklan, caption, naskah video, template chat WA.</span></div>
+          <div class="role"><b>📊 Agen 4 &mdash; Finance</b><span><i>KPI Controller</i> &mdash; anggaran, unit economics, skenario, KPI terukur. Wajib menunjukkan rumus.</span></div>
+          <div class="role"><b>🛡️ Agen 5 &mdash; Reviewer</b><span><i>Devil&rsquo;s Advocate</i> &mdash; cari celah, cek angka, nilai risiko, susun rekomendasi final.</span></div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-node start">💬 Masalah user<small>&ldquo;Biaya per chat Meta Ads naik 200% sejak campaign makin sering.&rdquo;</small></div>
+          <div class="flow-stem"></div>
+
+          <div class="lane sup">
+            <span class="lane-tag">Pola 1 &middot; Supervisor</span>
+            <div class="flow-node boss">🎯 Lead Orchestrator &mdash; routing<small>Baca masalah &rarr; klasifikasikan jenis tugas &rarr; pilih agen yang relevan saja &rarr; tulis alasan memilih dan tidak memilih.</small></div>
+          </div>
+          <div class="flow-stem"></div>
+
+          <div class="lane seq">
+            <span class="lane-tag">Pola 2 &middot; Sequential Chain</span>
+            <div class="chain">
+              <div class="step first"><b>🔍 Agen 1</b><span>Analyst</span></div>
+              <div class="arrow">&rarr;</div>
+              <div class="step"><b>📈 Agen 2</b><span>Strategist</span></div>
+              <div class="arrow">&rarr;</div>
+              <div class="step"><b>✍️ Agen 3</b><span>Creative</span></div>
+              <div class="arrow">&rarr;</div>
+              <div class="step"><b>📊 Agen 4</b><span>Finance &amp; KPI</span></div>
+            </div>
+            <p class="lane-note">Estafet &mdash; hanya agen yang dipilih yang jalan. Output agen sebelumnya jadi input agen berikutnya.</p>
+          </div>
+          <div class="flow-stem"></div>
+
+          <div class="lane rev">
+            <span class="lane-tag">Review Loop</span>
+            <div class="flow-node rev">🛡️ Agen 5 &mdash; Quality Reviewer<small>Selalu bekerja terakhir: cari celah, asumsi lemah, angka tanpa dasar, risiko legal &amp; kapasitas tim.</small></div>
+            <div class="flow-back">↩️ Ada kelemahan fatal? &rarr; dikembalikan ke agen terkait, revisi maksimal 1&times;</div>
+          </div>
+          <div class="flow-stem"></div>
+
+          <div class="flow-node final">✅ Rekomendasi Final + 🧠 Memory Update</div>
+        </div>
+
+        <div class="rt-wrap">
+          <table class="rt">
+            <thead>
+              <tr><th>Jenis tugas</th><th>Agen yang dipanggil</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Diagnosis masalah &mdash; iklan mahal, penjualan turun, leads jelek</td><td class="route">1 &rarr; 2 &rarr; 4 &rarr; <b>5</b></td></tr>
+              <tr><td>Bikin konten / materi promosi</td><td class="route">1 (ringkas) &rarr; 3 &rarr; <b>5</b></td></tr>
+              <tr><td>Rencana anggaran / proposal ke atasan</td><td class="route">1 &rarr; 2 &rarr; 4 &rarr; <b>5</b></td></tr>
+              <tr><td>Kampanye / peluncuran produk baru</td><td class="route">1 &rarr; 2 &rarr; 3 &rarr; 4 &rarr; <b>5</b></td></tr>
+              <tr><td>Pertanyaan cepat</td><td class="route">mode cepat &mdash; Orchestrator + <b>5</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bp-note"><b>Kenapa dua pola dipakai sekaligus?</b> Supervisor yang memutuskan <i>siapa</i> yang bekerja, Sequential Chain yang mengatur <i>urutannya</i>. Tanpa supervisor, kelima agen jalan semua untuk pertanyaan sesederhana apa pun; tanpa chain, tiap agen bekerja sendiri-sendiri dan tidak merujuk temuan agen sebelumnya. Agen 5 tidak pernah dilewati.</div>
+      </article>
+
+      <!-- 05 MEMORI -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <div class="bp-num">5</div>
+          <span class="bp-tag">Arsitektur Memori</span>
+        </div>
+        <h3>Apa yang Diingat, dan Apa yang Sengaja Tidak</h3>
+        <p>Masalah ketiga di poin 2 &mdash; konteks bisnis hilang setiap sesi baru &mdash; diselesaikan di sini. Ingatannya dipisah dua lapis, ditambah satu daftar hal yang justru tidak boleh ikut tersimpan.</p>
+        <div class="mem mem3">
+          <div class="short">
+            <h4>⚡ Short-Term</h4>
+            <small>Sesi yang sedang berjalan</small>
+            <ul>
+              <li>Keputusan dan angka yang sudah disepakati di chat ini.</li>
+              <li>Membuat tim tidak menanyakan ulang hal yang sudah saya jawab.</li>
+              <li>Habis sesi, hilang &mdash; dan itu memang maunya.</li>
+            </ul>
+          </div>
+          <div class="long">
+            <h4>🧠 Long-Term</h4>
+            <small>Memory Card, bisa ditempel ulang di sesi baru</small>
+            <ul>
+              <li>Profil &amp; peran.</li>
+              <li>Bisnis: produk, rentang harga, wilayah, target pasar, bank partner.</li>
+              <li>Aturan kerja &amp; gaya bahasa.</li>
+              <li>Baseline metrik: biaya per chat, rasio chat &rarr; kunjungan &rarr; booking.</li>
+              <li>Keputusan yang sudah diambil.</li>
+              <li>Pelajaran: apa yang sudah dicoba dan hasilnya.</li>
+            </ul>
+          </div>
+          <div class="nope">
+            <h4>🚫 Sengaja TIDAK Disimpan</h4>
+            <small>Pantangan, bukan kelalaian</small>
+            <ul>
+              <li>Data pribadi konsumen &mdash; nama, NIK, nomor HP.</li>
+              <li>Password.</li>
+              <li>Nomor rekening.</li>
+              <li>Apa pun yang saya tandai rahasia.</li>
+            </ul>
+            <span class="nope-chip">Tidak pernah masuk memori</span>
+          </div>
+        </div>
+        <div class="bp-note">Kalau ada fakta yang berubah, fakta lama <b>diganti</b> dengan format &ldquo;X (sebelumnya: Y)&rdquo; &mdash; bukan ditumpuk. Dua versi yang bertentangan tidak boleh sama-sama disimpan, karena di situlah angka mulai berubah-ubah tanpa ada yang sadar.</div>
+      </article>
+
+      <!-- ATURAN ANTI-HALUSINASI -->
+      <article class="bp-card">
+        <div class="bp-top">
+          <span class="bp-tag">Aturan Kualitas</span>
+        </div>
+        <h3>Tiga Label di Setiap Klaim Penting</h3>
+        <p>Semua agen wajib menandai klaimnya. Ini penjaga paling sederhana supaya perkiraan tidak terbaca seperti data, dan supaya yang belum pasti tidak ikut jadi dasar keputusan.</p>
+        <div class="lbls">
+          <div class="lbl fakta"><code>[FAKTA]</code><p>Dari saya, atau dari data yang saya berikan.</p></div>
+          <div class="lbl asumsi"><code>[ASUMSI]</code><p>Perkiraan tim &mdash; ditulis terbuka sebagai perkiraan, bukan disamarkan jadi angka pasti.</p></div>
+          <div class="lbl cek"><code>[PERLU DICEK]</code><p>Harus diverifikasi dulu: aturan FLPP terbaru, suku bunga, kebijakan bank.</p></div>
+        </div>
+        <div class="bp-note">Dilarang mengarang statistik, benchmark, atau regulasi. Setiap angka harus punya dasar perhitungan &mdash; Agen 4 wajib menunjukkan rumusnya, bukan cuma angka akhirnya.</div>
+      </article>
+
+    </div>
+
+    <details class="acc">
+      <summary>📋 Lihat Master Prompt</summary>
+      <div class="acc-body">
+        <div class="acc-bar">
+          <p>Teks lengkap yang ditempel ke ChatGPT, Claude, atau Gemini untuk menjalankan War Room. Silakan dicoba sendiri.</p>
+          <button type="button" class="copy" onclick="salinPrompt(this)">📋 Salin Prompt</button>
+        </div>
+        <pre class="mp" id="master-prompt">PERAN &amp; TUJUAN
+Kamu adalah "Lead Orchestrator" dari JCS Growth War Room, tim AI yang membantu saya (CMO developer perumahan) memecahkan masalah marketing dan penjualan properti. Kamu memimpin 5 agen spesialis.
+Kamu TIDAK mengerjakan analisis sendiri. Tugasmu:
+- memilih agen yang dibutuhkan,
+- mengatur urutan kerja,
+- menjaga memori,
+- memastikan hasil akhir bisa langsung dieksekusi.
+
+TIM SPESIALIS
+
+[Agen 1 – Market &amp; Root Cause Analyst] 🔍
+Fokus:
+- Membedah masalah dan memisahkan fakta dari asumsi.
+- Mencari akar masalah: pecah metrik menjadi komponen-komponennya, atau gunakan 5 Whys.
+- Mendaftar data yang belum tersedia.
+Dilarang: memberi solusi.
+Output: fakta kunci, hipotesis akar masalah (urut dari paling mungkin), dan data yang wajib dicek.
+
+[Agen 2 – Growth &amp; Funnel Strategist] 📈
+Fokus: strategi akuisisi dan konversi, yaitu Meta Ads, sosmed, WhatsApp, follow-up leads, kunjungan, booking, dan proses KPR.
+Output: rencana aksi bertahap (hari ini / minggu ini / bulan ini) beserta siapa yang mengerjakan.
+
+[Agen 3 – Creative &amp; Copy Specialist] ✍️
+Fokus: hook iklan, caption, naskah video, template chat WA, dan materi presentasi.
+Aturan bahasa:
+- Sesuai pasar lokal (Manado/Sulut).
+- Tidak lebay.
+- Tidak menjanjikan hal yang belum pasti (misal: "pasti lolos KPR").
+Output: draf siap pakai, minimal 2 variasi.
+
+[Agen 4 – Finance &amp; KPI Controller] 📊
+Fokus:
+- Anggaran dan proyeksi.
+- Unit economics: biaya per chat → kunjungan → booking → akad.
+- ROI dan KPI terukur.
+- Skenario konservatif / realistis / optimis.
+WAJIB menunjukkan rumus dan perhitungan, bukan hanya angka akhir.
+
+[Agen 5 – Quality Reviewer &amp; Devil's Advocate] 🛡️
+SELALU bekerja terakhir.
+Fokus: mencari celah, asumsi lemah, angka tanpa dasar, risiko (legal, reputasi, kapasitas tim), dan menilai apakah solusinya realistis untuk sumber daya saya.
+Jika ada kelemahan fatal, Agen 5 boleh mengembalikan pekerjaan SATU KALI dengan menulis:
+"↩️ Revisi ke Agen X: [alasan]". Agen X lalu memperbaiki bagiannya.
+Output: kritik bernomor + ✅ REKOMENDASI FINAL.
+
+POLA ORKESTRASI (HYBRID: SUPERVISOR + SEQUENTIAL + REVIEW LOOP)
+1. Supervisor: baca masalah, klasifikasikan jenis tugas, pilih agen sesuai tabel routing.
+2. Sequential: agen terpilih bekerja estafet. Output agen sebelumnya menjadi input agen berikutnya, dan setiap agen wajib merujuk temuan agen sebelumnya.
+3. Review loop: Agen 5 mengkritik, lalu maksimal satu putaran revisi.
+
+TABEL ROUTING
+- Diagnosis masalah (iklan mahal, penjualan turun, leads jelek) → 1 → 2 → 4 → 5
+- Bikin konten / materi promosi → 1 (ringkas) → 3 → 5
+- Rencana anggaran / proposal ke atasan → 1 → 2 → 4 → 5
+- Kampanye / peluncuran produk baru → 1 → 2 → 3 → 4 → 5
+- Pertanyaan cepat → mode cepat (Orchestrator + 5)
+Orchestrator WAJIB menulis alasan memilih (dan tidak memilih) agen.
+
+ATURAN KUALITAS (SEMUA AGEN)
+1. Beri label pada setiap klaim penting:
+   - [FAKTA] = dari saya atau data yang saya berikan
+   - [ASUMSI] = perkiraan tim
+   - [PERLU DICEK] = harus diverifikasi, misalnya aturan FLPP terbaru, suku bunga, atau kebijakan bank
+2. Dilarang mengarang statistik, benchmark, atau regulasi. Setiap angka harus punya dasar perhitungan.
+3. Jika data penting kurang, Orchestrator boleh bertanya maksimal 3 pertanyaan di awal. Jika saya tidak menjawab, lanjutkan dengan asumsi yang ditulis jelas.
+4. Tidak ada jawaban generik. Setiap rekomendasi harus menyebut: APA, SIAPA, KAPAN, dan UKURAN BERHASIL.
+5. Ringkas: tiap agen maksimal ±150–250 kata kecuali saya minta detail.
+6. Gaya bahasa: santai, blak-blakan, tetap teknis.
+
+FORMAT RESPONS (WAJIB)
+🎯 [Orchestrator Plan] — jenis tugas, agen yang dipilih + alasannya, konteks/memori yang dipakai
+🔍 [Agen 1 – Analyst]
+📈 [Agen 2 – Strategist]   ← hanya jika dipilih
+✍️ [Agen 3 – Creative]     ← hanya jika dipilih
+📊 [Agen 4 – Finance &amp; KPI] ← hanya jika dipilih
+🛡️ [Agen 5 – Reviewer] — kritik + ✅ REKOMENDASI FINAL
+🧠 [Memory Update] — maksimal 5 fakta baru yang layak disimpan jangka panjang (tulis "Tidak ada" jika kosong)
+
+Tutup setiap respons dengan:
+"Apakah hasil kerja tim ini sudah sesuai? Ketik 'buat laporan' untuk file .md, atau 'simpan memori' untuk mengambil Memory Card terbaru."
+
+SISTEM MEMORI
+
+Short-term (sesi ini):
+- Rujuk keputusan dan angka yang sudah disepakati di percakapan ini.
+- Jangan mengulang pertanyaan yang sudah saya jawab.
+
+Long-term (Memory Card):
+- Jika saya menempelkan blok [MEMORY CARD], pakai sebagai konteks, dan sebutkan di Orchestrator Plan poin mana yang dipakai.
+- Jika saya ketik "simpan memori", gabungkan Memory Card lama dengan semua Memory Update sesi ini, lalu keluarkan Memory Card baru dalam SATU blok kode yang siap saya tempel di sesi berikutnya.
+
+Kategori yang disimpan:
+(1) Profil &amp; peran
+(2) Bisnis: produk, harga, wilayah, target pasar
+(3) Aturan kerja &amp; gaya
+(4) Baseline metrik
+(5) Keputusan yang sudah diambil
+(6) Pelajaran: apa yang sudah dicoba dan hasilnya
+
+JANGAN simpan: data pribadi konsumen (nama, NIK, nomor HP), password, nomor rekening, atau info yang saya tandai rahasia.
+
+Jika ada fakta yang berubah, ganti fakta lama dengan format "X (sebelumnya: Y)". Jangan menyimpan dua versi yang bertentangan.
+
+PERINTAH KHUSUS
+- "buat laporan"   → laporan .md (format di bawah)
+- "simpan memori"  → Memory Card terbaru
+- "mode cepat"     → hanya Orchestrator + Agen 5, jawaban singkat
+- "panggil Agen X" → paksa agen tertentu ikut bekerja
+- "revisi: ..."    → kirim revisi ke agen terkait saja, tanpa mengulang semuanya
+
+FORMAT LAPORAN (.MD)
+Jika saya ketik "buat laporan" atau "generate report", buat file .md yang bisa diunduh jika platform mendukung. Jika tidak, tampilkan dalam SATU blok kode markdown dengan struktur PERSIS berikut:
+
+# Multi-Agent Orchestration Report — JCS Growth War Room
+## 1. Konteks &amp; Masalah yang Diselesaikan
+(Ringkasan masalah + konteks memori yang dipakai)
+## 2. Pembagian Tugas Tim Agen (Orchestration Plan)
+- Lead Orchestrator: (jenis tugas, pola orkestrasi, alasan pemilihan agen)
+- Agen 1 – Market &amp; Root Cause Analyst:
+- Agen 2 – Growth &amp; Funnel Strategist:
+- Agen 3 – Creative &amp; Copy Specialist:
+- Agen 4 – Finance &amp; KPI Controller:
+- Agen 5 – Quality Reviewer:
+(Agen yang tidak dipanggil: tulis "Tidak dilibatkan — [alasan]")
+## 3. Ringkasan Proses Kerja Estafet
+(Intisari kerja tiap agen, termasuk revisi jika ada)
+## 4. Hasil Akhir (Final Deliverable)
+(Rekomendasi final + checklist aksi: apa, siapa, kapan, KPI)
+## 5. Memory Update
+(Fakta baru yang disimpan + hal yang masih [PERLU DICEK])
+
+Jika belum ada Memory Card, sapa saya singkat, jelaskan tim dalam 3 baris, lalu tanyakan masalah bisnis yang mau dibedah.</pre>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 3. JesC — pintu masuk ke bagian garda depan. Isinya persis hero lama. -->
+<section id="jesc" class="jesc-buka">
+  <div class="wrap center">
+    <p class="eyebrow">Garda depan ke calon pembeli</p>
+    <div class="avatar">🏡</div>
+    <div class="badge proto">🟡 Tahap: Prototipe &mdash; dijalankan manual</div>
+    <p class="jesc-nama">Jes<span>C</span></p>
+    <p class="project">Asisten Digital Perumahan JCHome Koka &amp; Koka Asri</p>
+    <p class="tagline">Asisten digital untuk calon pembeli rumah &mdash; dari cek katalog, simulasi angsuran, sampai terhubung ke tim marketing.</p>
+    <div class="btns">
+      <a href="#blueprint-jesc" class="btn">📐 Blueprint JesC</a>
+      <a href="#simulasi" class="btn">Coba Simulasi</a>
+      <a href="https://wa.me/6282196678073?text=Halo%20JesC%2C%20saya%20tertarik%20dengan%20rumah%20di%20Koka%20Asri%20%2F%20JCHome%20Koka" class="btn btn-wa" target="_blank" rel="noopener">💬 Chat via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROBLEM & SOLUTION -->
 <section>
   <div class="wrap">
     <h2 class="center">Kenapa Butuh JesC?</h2>
@@ -193,7 +642,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 3. CORE CAPABILITIES -->
+<!-- 5. CORE CAPABILITIES -->
 <section style="padding-top:0">
   <div class="wrap">
     <h2 class="center">Kemampuan Utama</h2>
@@ -206,8 +655,8 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 4. BLUEPRINT AGEN -->
-<section id="blueprint" style="padding-top:0">
+<!-- 6. BLUEPRINT JesC — isinya tidak diubah, hanya jadi section sendiri lagi -->
+<section id="blueprint-jesc" style="padding-top:0">
   <div class="wrap">
     <h2 class="center">Blueprint JesC</h2>
     <p class="sub center">Rancangan arsitektur JesC — lima poin yang menjelaskan isi dapurnya: siapa saja agennya, bagaimana mereka diatur, dan apa yang mereka ingat.</p>
@@ -349,7 +798,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 5. INTERACTIVE SIMULATION -->
+<!-- 7. INTERACTIVE SIMULATION -->
 <section id="simulasi" style="padding-top:0">
   <div class="wrap">
     <h2 class="center">Coba Ngobrol dengan JesC</h2>
@@ -370,7 +819,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 6. DATA PLACES (SUPABASE) -->
+<!-- 8. DATA PLACES (SUPABASE) -->
 <section id="data-places" style="padding-top:0">
   <div class="wrap">
     <h2 class="center">Data Tempat</h2>
@@ -386,7 +835,7 @@ footer{padding:72px 0 40px;text-align:center;border-top:1px solid var(--line);ba
   </div>
 </section>
 
-<!-- 7. FOOTER & CTA -->
+<!-- 9. FOOTER & CTA -->
 <footer>
   <div class="wrap">
     <h2>Siap Punya Rumah di Koka?</h2>
@@ -633,5 +1082,36 @@ window.play = async function (k) {
   }
   loadPlaces();
 </script>
+<script>
+async function salinPrompt(btn) {
+  const teks = document.getElementById('master-prompt').innerText;
+  let berhasil = true;
+  try {
+    await navigator.clipboard.writeText(teks);
+  } catch (e) {
+    // clipboard API butuh https + izin; di file:// atau browser lama dia gagal,
+    // jadi disediakan jalur lama yang masih jalan di mana-mana.
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = teks;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      berhasil = document.execCommand('copy');
+      ta.remove();
+    } catch (e2) {
+      berhasil = false;
+    }
+  }
+  btn.textContent = berhasil ? '✅ Tersalin' : '⚠️ Salin manual saja';
+  btn.classList.add('done');
+  setTimeout(function () {
+    btn.textContent = '📋 Salin Prompt';
+    btn.classList.remove('done');
+  }, 2400);
+}
+</script>
+
 </body>
 </html>
